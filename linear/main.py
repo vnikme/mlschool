@@ -20,6 +20,7 @@ class LinearModel(torch.nn.Module):
 
 def generate_data(a, b, sigma, n):
     x = np.random.randn(n, 2)
+    # y = a * x0 + b * x1
     s = np.sum(x * [a, b], axis=1)
     y = np.zeros(n, dtype=np.float32)
     y[s > 0] = 1
@@ -40,20 +41,20 @@ def plot_data(x, y, a, b):
 def main():
     torch.manual_seed(1)
     np.random.seed(1)
-    x, y = generate_data(0.5, 0.3, 0.2, 100)
+    x, y = generate_data(-0.5, 0.3, 0.1, 1000)
     model = LinearModel(2)
     optimiser = torch.optim.SGD(model.parameters(), lr=0.0200117)
     criterion = torch.nn.BCEWithLogitsLoss()
-    for i in range(300):
+    for i in range(30000):
         optimiser.zero_grad()
         outputs = model(x)
         loss = criterion(outputs, y)
         print(float(loss))
         loss.backward()
         optimiser.step()
-        if i % 100 == 0:
+        if i % 10000 == 0:
             plot_data(x, y, model.model.weight[0][0], model.model.weight[0][1])
-    plot_data(x, y, model.model.weight[0][0], model.model.weight[0][1])
+    print(model.model.weight)
 
 
 if __name__ == '__main__':
