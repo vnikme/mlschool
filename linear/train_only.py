@@ -41,7 +41,7 @@ def plot_data(x, y, a, b):
 def main():
     torch.manual_seed(1)
     np.random.seed(1)
-    x, y = generate_data(-0.5, 0.3, 0.1, 1000)
+    x, y = generate_data(0.5, 0.3, 0.1, 1000)
     model = LinearModel(2)
     optimiser = torch.optim.SGD(model.parameters(), lr=0.0200117)
     criterion = torch.nn.BCEWithLogitsLoss()
