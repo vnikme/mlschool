@@ -4,6 +4,7 @@
 #include <iostream>
 #include <locale>
 #include <string>
+#include <string_view>
 #include <ctime>
 
 
@@ -39,7 +40,7 @@ bool CheckForEveryDigit(const std::string &text) {
 }
 
 
-bool CheckForEveryDigitWithoutLower(const std::string &text) {
+bool CheckForEveryDigitWithoutLower(const std::string_view &text) {
     for (char sym : ALPHABET) {
         if (text.find(sym) == std::string::npos)
             return false;
@@ -48,7 +49,7 @@ bool CheckForEveryDigitWithoutLower(const std::string &text) {
 }
 
 
-bool CheckViaFlags(const std::string &text) {
+bool CheckViaFlags(const std::string_view &text) {
     int flags = 0;
     for (char sym : text) {
         unsigned char code = sym - 'a';
