@@ -37,8 +37,8 @@ bool CheckForEveryDigit(const std::string &text) {
 }
 
 
-bool CheckForEveryDigitWithoutLower(std::string text) {
-    ToLower(text);
+bool CheckForEveryDigitWithoutLower(const std::string &text) {
+    //ToLower(text);
     for (char sym : ALPHABET) {
         if (text.find(sym) == std::string::npos)
             return false;
@@ -47,8 +47,8 @@ bool CheckForEveryDigitWithoutLower(std::string text) {
 }
 
 
-bool CheckViaFlags(std::string text) {
-    ToLower(text);
+bool CheckViaFlags(const std::string &text) {
+    //ToLower(text);
     bool flags[26] = {};
     for (char sym : text) {
         int code = int(sym) - int('a');
@@ -62,8 +62,8 @@ bool CheckViaFlags(std::string text) {
 }
 
 
-bool CheckViaFlagsImproved(std::string text) {
-    ToLower(text);
+bool CheckViaFlagsImproved(const std::string &text) {
+    //ToLower(text);
     int trueCount = 0;
     bool flags[26] = {};
     for (char sym : text) {
