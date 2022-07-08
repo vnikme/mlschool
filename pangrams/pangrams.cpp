@@ -50,13 +50,19 @@ bool CheckForEveryDigitWithoutLower(const std::string_view &text) {
 
 
 bool CheckViaFlags(const std::string_view &text) {
-    int flags = 0;
+    int flags = 0, count = 0;
     for (char sym : text) {
         unsigned char code = sym - 'a';
-        if (code < 26)
-            flags |= (1 << code);
+        if (code < 26) {
+            int mask = (1 << code);
+            if ((flags & mask) == 0) {
+                flags |= (1 << code);
+                if (++count == 26)
+                    return true;
+            }
+        }
     }
-    return (flags == (1 << 26) - 1);
+    return false;
 }
 
 
