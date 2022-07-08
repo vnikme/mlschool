@@ -64,3 +64,23 @@ true 831
 true 21173
 true 20217
 
+
+Bitmask
+Text size: 37
+true 345652
+false 1621
+false 4354
+false 4080
+
+Text size: 33
+false 24153
+false 368
+false 3826
+false 3859
+
+Text size: 1000260
+true 879051
+true 409
+true 9157
+true 9775
+

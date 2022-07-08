@@ -49,16 +49,13 @@ bool CheckForEveryDigitWithoutLower(const std::string &text) {
 
 bool CheckViaFlags(const std::string &text) {
     //ToLower(text);
-    bool flags[26] = {};
+    int flags = 0;
     for (char sym : text) {
-        int code = int(sym) - int('a');
-        if (0 <= code && code < 26)
-            flags[code] = true;
+        unsigned char code = int(sym) - int('a');
+        if (code < 26)
+            flags |= (1 << code);
     }
-    for (bool flag : flags)
-        if (!flag)
-            return false;
-    return true;
+    return (flags == (1 << 26) - 1);
 }
 
 
@@ -94,8 +91,10 @@ int main() {
     RunAll(10000, "Jackdaws love my big sphinx of quartz");
     RunAll(10000, "Jackdaws love my sphinx of quartz");
     std::string text;
+    for (int i = 0; i < 1000000; ++i)
+        text += ' ';
     for (int i = 0; i < ALPHABET.size(); ++i) {
-        for (int j = (i < 2 ? 1000000 : 10); j > 0; --j) {
+        for (int j = 10; j > 0; --j) {
             text += ALPHABET[i];
         }
     }
