@@ -41,20 +41,32 @@ def plot_data(x, y, a, b):
 def main():
     torch.manual_seed(1)
     np.random.seed(1)
-    x, y = generate_data(-0.5, 0.3, 0.1, 1000)
+    x, y = generate_data(0.5, 0.3, 0.3, 100)
+    x_train, y_train = x[:10], y[:10]
+    x_test, y_test = x[10:], y[10:]
     model = LinearModel(2)
     optimiser = torch.optim.SGD(model.parameters(), lr=0.0200117)
     criterion = torch.nn.BCEWithLogitsLoss()
+    losses_train, losses_test = [], []
     for i in range(30000):
         optimiser.zero_grad()
-        outputs = model(x)
-        loss = criterion(outputs, y)
-        print(float(loss))
+        outputs = model(x_train)
+        loss = criterion(outputs, y_train)
+        train_loss = float(loss)
         loss.backward()
         optimiser.step()
-        if i % 10000 == 0:
-            plot_data(x, y, model.model.weight[0][0], model.model.weight[0][1])
+        with torch.no_grad():
+            outputs = model(x_test)
+            test_loss = float(criterion(outputs, y_test))
+        losses_train.append(train_loss)
+        losses_test.append(test_loss)
+        print('Train: {}, test: {}'.format(train_loss, test_loss))
     print(model.model.weight)
+    plt.plot(losses_train)
+    plt.plot(losses_test)
+    plt.show()
+    plot_data(x_train, y_train, model.model.weight[0][0], model.model.weight[0][1])
+    plot_data(x_test, y_test, model.model.weight[0][0], model.model.weight[0][1])
 
 
 if __name__ == '__main__':
