@@ -44,3 +44,23 @@ true 68717
 true 88293
 true 88853
 
+
+Without copying
+Text size: 37
+true 339887
+false 1427
+false 4549
+false 4239
+
+Text size: 33
+false 24537
+false 322
+false 3868
+false 3912
+
+Text size: 2000240
+true 1720411
+true 831
+true 21173
+true 20217
+
