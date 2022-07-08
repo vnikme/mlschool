@@ -1,0 +1,46 @@
+vnik@vnik-laptop:~/work/mlschool/pangrams$ python3 pangrams.py 
+37
+True
+0.024194002151489258
+
+True
+0.008775472640991211
+
+True
+0.05086493492126465
+
+True
+0.03675961494445801
+
+2000240
+True
+0.02370595932006836
+
+True
+0.0017306804656982422
+
+True
+0.21090388298034668
+
+True
+0.17677879333496094
+
+vnik@vnik-laptop:~/work/mlschool/pangrams$ ./run.sh 
+Text size: 37
+true 343245
+true 16779
+true 18322
+true 17725
+
+Text size: 33
+false 24580
+false 12197
+false 15811
+false 15992
+
+Text size: 2000240
+true 1777237
+true 68717
+true 88293
+true 88853
+
