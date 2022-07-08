@@ -61,7 +61,7 @@ bool CheckViaFlags(const std::string &text) {
 
 void RunAll(int count, const std::string &text) {
     std::cout << "Text size: " << text.size() << std::endl;
-    RunAndMeasure(CheckForEveryDigit, count, text);
+    //RunAndMeasure(CheckForEveryDigit, count, text);
     RunAndMeasure(CheckForEveryDigitWithoutLower, count, text);
     RunAndMeasure(CheckViaFlags, count, text);
     std::cout << std::endl;
@@ -70,7 +70,7 @@ void RunAll(int count, const std::string &text) {
 
 int main() {
     RunAll(10000, "Jackdaws love my big sphinx of quartz");
-    RunAll(10000, "Jackdaws love my sphinx of quartz");
+    //RunAll(10000, "Jackdaws love my sphinx of quartz");
     std::string text;
     for (int i = 0; i < 1000000; ++i) {
         text += ' ';
