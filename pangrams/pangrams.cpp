@@ -68,11 +68,9 @@ void RunAll(int count, const std::string &text) {
 }
 
 
-int main() {
-    RunAll(10000, "Jackdaws love my big sphinx of quartz");
-    //RunAll(10000, "Jackdaws love my sphinx of quartz");
+void TestLongString(int paddingSize) {
     std::string text;
-    for (int i = 0; i < 1000000; ++i) {
+    for (int i = 0; i < paddingSize; ++i) {
         text += ' ';
         if (rand() % 2 == 0)
             text += '.';
@@ -85,6 +83,15 @@ int main() {
         }
     }
     RunAll(1, text);
+
+}
+
+
+int main() {
+    RunAll(10000, "Jackdaws love my big sphinx of quartz");
+    //RunAll(10000, "Jackdaws love my sphinx of quartz");
+    TestLongString(1000000);
+    TestLongString(10000000);
     return 0;
 }
 
