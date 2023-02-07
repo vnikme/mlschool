@@ -4,7 +4,7 @@ import urllib.parse
 
 
 def sum(a, b):
-    url = 'http://localhost:8197/sum'
+    url = 'http://localhost:80/sum'
     data = {'a': a, 'b': b}
     request = urllib.request.Request(url, method='POST', data=json.dumps(data).encode())
     response = urllib.request.urlopen(request)

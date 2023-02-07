@@ -9,7 +9,6 @@ class ExampleHandler(BaseHTTPRequestHandler):
         super(ExampleHandler, self).__init__(*args)
 
     def setup_headers(self):
-        self.send_header('Content-type', 'application/json; charset=utf-8')
         self.send_header('Access-Control-Allow-Origin', '*')
         self.send_header('Access-Control-Allow-Headers', '*8')
         self.send_header('Access-Control-Allow-Methods', 'OPTIONS,POST,GET')
@@ -17,11 +16,24 @@ class ExampleHandler(BaseHTTPRequestHandler):
         self.send_header('Pragma', 'no-cache')
         self.send_header('Expires', '0')
 
+    def do_GET(self):
+        url = urllib.parse.urlparse(self.path)
+        params = urllib.parse.parse_qs(url.query)
+        data = b''
+        if url.path == '/hello':
+            #self.send_header('Content-type', 'text/html; charset=utf-8')
+            data = '<html><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"><body>Hello, world! <input type="button" value="Нажми меня" /></body></html>'.encode()
+        self.send_response(200)
+        self.setup_headers()
+        self.end_headers()
+        self.wfile.write(data)
+
     def do_POST(self):
         url = urllib.parse.urlparse(self.path)
         params = urllib.parse.parse_qs(url.query)
         data = b''
         if url.path == '/sum':
+            #self.send_header('Content-type', 'application/json; charset=utf-8')
             content_len = int(self.headers.get('Content-Length'))
             body = self.rfile.read(content_len)
             data = json.loads(body)
@@ -38,7 +50,7 @@ class HttpHelper:
         pass
 
     def run(self):
-        server = HTTPServer(('', 8197), lambda *args: ExampleHandler(*args))
+        server = HTTPServer(('', 80), lambda *args: ExampleHandler(*args))
         while True:
             try:
                 server.serve_forever()
